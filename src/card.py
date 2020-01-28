@@ -1,6 +1,6 @@
 import collections
 
-class card:
+class Card:
     # Initializes a card and checks for intial value errors. A card without the suit or number is
     # a useless. 
     def __init__(self, suit, number):

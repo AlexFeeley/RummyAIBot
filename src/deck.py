@@ -1,4 +1,4 @@
-class deck:
+class Deck:
     # builds inital deck of cards thats empty if no second param is passed. Otherwise construct full
     # deck.
     def __init__(self, initialize = None):

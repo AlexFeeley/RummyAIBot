@@ -1,4 +1,4 @@
-class hand:
+class Hand:
 
     # Constructor shuffles deck and draws original 7 cards for each player
     def __init__(self, deck = None):
