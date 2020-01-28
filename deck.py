@@ -7,7 +7,7 @@ class deck:
     def __length__(self):
 
     # Prints the deck in a clean way
-    def __repr__(self):
+    def __str__(self):
 
     # Checks if the deck contains a card
     def __contains__(self, card):
@@ -26,6 +26,10 @@ class deck:
 
     # Returns an array with all cards passed a certain card. Mimics picking up at a number 
     def pickup_cards(self, card):
+
+    # Returns if a deck is empty
+    def is_empty(self):
+
 
 
 
