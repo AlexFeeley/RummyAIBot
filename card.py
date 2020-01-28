@@ -22,5 +22,14 @@ class card:
     def get_number(self):
         return self.number
 
-    
-        
+    def __str__(self):
+        if self.number == 10:
+            print("Jack of ", self.suit)
+        elif self.number == 11:
+            print("Queen of ", self.suit)
+        elif self.number == 12:
+            print("King of ", self.suit)
+        elif self.number == 13:
+            print("Ace of ", self.suit)
+        else:
+            print(self.number, " of ", self.suit)
