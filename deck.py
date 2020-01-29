@@ -29,11 +29,3 @@ class deck:
 
     # Returns if a deck is empty
     def is_empty(self):
-
-
-
-
-
-
-
-
