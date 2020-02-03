@@ -7,8 +7,7 @@ class Hand:
     def __init__(self, deck = None):
         self.hand = Deck()
         if deck is not None:
-            for i in range(6):
-                self.hand.insert(deck.draw_card())
+            _startcards_(deck)
 
     # Helper method, draws 7 cards from the deck
     def _startcards_(self, deck):
@@ -35,6 +34,17 @@ class Hand:
         else:
             raise ValueError("Card not in hand")
 
+    # lays down cards if possible
+    def lay_down(self, deck, cards):
+        if _verify_set(cards):
+            for card in cards:
+                if card not in self:
+                    raise ValueError("Cards are not in hand")
+            for card in cards:
+                deck.insert(card)
+                self.hand.delete(card)
+
+
     # Checks if cards are in hand
     def __contains__(self, card):
         return card in self.hand
@@ -44,12 +54,37 @@ class Hand:
         suit = cards[i].get_suit()
         number = cards[i].get_number()
         for card in cards:
-            if not card in self:
-                raise ValueError("Card not in hand")
-            else:
-                if card.get_suit() != suit:
-                    if card.get_number != number:
-                        raise ValueError("Cards are not a valid set")
-                    else:
-                        return True
+            if card.get_suit() != suit:
+                if card.get_number != number:
+                    return False
+                elif _same_number(cards):
+                    return True
+
+             else _consecutive(cards):
+                 return True
+
+        return False
+
+
+    # helper method to identify if three numbers are consectuive. Additionally checks they do not
+    # loop
+    def _consectutive(self, cards):
+        integers = []
+        for card in cards:
+            integers.append(card.get_number())
+        if sorted(integers) == list(range(min(integers), max(integers)+1)):
+            return True
+        else:
+            1 if x==13 else x for x in integers 
+            return sorted(integers) == list(range(min(integers), max(integers)_1))
+
+    # helper method to check if all cards have the same number
+    def _same_number(cards):
+        number = cards[1].get_number()
+        for card in cards:
+            if card.number() != number:
+                return False
+        return True
+
+
 
