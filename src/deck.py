@@ -40,13 +40,8 @@ class Deck:
         print("compile line")
 
     # Returns if a deck is empty
+
+    def is_empty(self):
+
     def is_empty(self):
         print("compile line")
-
-
-
-
-
-
-
-
