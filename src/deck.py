@@ -3,25 +3,24 @@
 
 from src.card import *
 
-
 class Deck:
     # builds inital deck of cards thats empty if no second param is passed. Otherwise construct full
     # deck.
-    def __init__(self, initialize=None):
+    def __init__(self, initialize=None, number_cards = 0):
         if initialize is None:
+            # Initialize an empty deck with 0 cards
             self.cards = []
+            self.number_cards = 0
         else:
+            # Initialize a full deck with 52 cards
             self.cards = []
             for s in ["Hearts", "Diamonds", "Spades", "Clubs"]:
                 for v in ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]:
                     self.cards.append(Card(s, v))
-
-            # Used to keep count of the number of cards in the deck
-            global number_cards
-            number_cards = 52
+            self.number_cards = 52
 
     # Returns the number of cards in the deck
-    def __length__(self):
+    def __len__(self):
         return self.number_cards
 
     # Prints the deck in a clean way
