@@ -7,7 +7,7 @@ class Card:
         if suit.lower() != "spades" and suit.lower() != "hearts" and suit.lower() != "clubs" \
             and suit.lower() != "diamonds": 
             raise ValueError('Enter a valid suit')
-        elif number > 13 or number < 2:
+        elif number > 14 or number < 2:
             raise ValueError('Enter a valid number')
         else:
             self.suit = suit
@@ -23,13 +23,13 @@ class Card:
         return self.number
 
     def __str__(self):
-        if self.number == 10:
+        if self.number == 11:
             print("Jack of ", self.suit)
-        elif self.number == 11:
-            print("Queen of ", self.suit)
         elif self.number == 12:
-            print("King of ", self.suit)
+            print("Queen of ", self.suit)
         elif self.number == 13:
+            print("King of ", self.suit)
+        elif self.number == 14:
             print("Ace of ", self.suit)
         else:
             print(self.number, " of ", self.suit)
