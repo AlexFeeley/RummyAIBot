@@ -11,5 +11,4 @@ export PYTHONPATH=$PYTHONPATH:/path/you/want/to/add
 in the terminal. My actual command looked like
 export PYTHONPATH=$PYTHONPATH: /luke/home/PycharmProjects/rummyaibot/
 You will have to do something similar although I do not know the exact paths for linux. 
-Also, for future notes, pytest only works because we have it such that all of our tests start with
-the name test. 
+Also, for future notes, pytest only works because we havejQ
