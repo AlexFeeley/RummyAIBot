@@ -1,20 +1,22 @@
+dist: xenial
 language: python
 
-# Run on all major versions of python since 2.7
-python:
-  - "2.7"
-  - "3.4"
-  - "3.5"
-  - "3.6"
-  - "3.7"
-  - "3.8"
-  - "3.8-dev"
-  - "nightly"   # Nightly build
+jobs:
+  include:
+      python: 3.8
+      before_script:
+      - export PYTHONPATH=$PYTHONPATH:$(pwd)
+      script:
+      - pytest
 
-# Install dependencies
-install:
-  - pip install -r requirements.txt
-
-# Command to run tests
-script:
-  - pytest
+      python: 3.6
+      before_script:
+      - export PYTHONPATH=$PYTHONPATH:$(pwd)
+      script:
+      - pytest
+      
+      python: 'nightly'
+      before_script:
+      - export PYTHONPATH=$PYTHONPATH:$(pwd)
+      script:
+      - pytest
