@@ -6,7 +6,7 @@ from src.card import *
 class Deck:
     # builds inital deck of cards thats empty if no second param is passed. Otherwise construct full
     # deck.
-    def __init__(self, initialize=None, number_cards = 0):
+    def __init__(self, initialize = None, number_cards = 0):
         if initialize is None:
             # Initialize an empty deck with 0 cards
             self.cards = []
@@ -15,7 +15,7 @@ class Deck:
             # Initialize a full deck with 52 cards
             self.cards = []
             for s in ["Hearts", "Diamonds", "Spades", "Clubs"]:
-                for v in ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]:
+                for v in range(2, 15):
                     self.cards.append(Card(s, v))
             self.number_cards = 52
 
@@ -30,34 +30,44 @@ class Deck:
 
     # Checks if the deck contains a card
     def __contains__(self, card):
-        print("compile line")
+        for c in self.cards:
+            if c == card:
+                return True
+        return False
 
     # Inserts a card into the deck
     def insert(self, card):
-        print("compile line")
-        number_cards += 1
+        self.cards.append(card)
+        self.number_cards += 1
 
     # Deletes a card from the deck
     def delete(self, card):
-        print("compile line")
-        number_cards -= 1
+        if self.__contains__(card):
+            self.cards.remove(card)
+            self.number_cards -= 1
+        else:
+            print("Card to be deleted was not found in deck")
+
+    # Deck shuffle command??
 
     # Draws a card from the deck
     def draw_card(self):
-        print("compile line")
-        number_cards -= 1
+        card = self.cards[0]
+        self.cards.remove(card)
+        self.number_cards -= 1
+        return card
 
     # Returns the array containing the deck
     def return_deck(self):
         print("compile line")
 
-    # Returns an array with all cards passed a certain card. Mimics picking up at a number 
+    # Returns an array with all cards passed a certain card. Mimics picking up at a number?
     def pickup_cards(self, card):
         print("compile line")
 
     # Returns true if a deck is empty
     def is_empty(self):
-        if number_cards == 0:
+        if self.number_cards == 0:
             return True
         else:
             return False
