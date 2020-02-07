@@ -1,11 +1,18 @@
 language: python
 
-# Run on all major versions of python since 2.7
-python:
-  - "3.6"
-  - "3.8-dev"
-  - "nightly"   # Nightly build
-
-# Command to run tests
+jobs:
+        include:
+                - python: 3.6
+                  PARALLELIZE=true
+                  dist: xenial
+                - python: 3.8
+                  PARALLELIZE=true
+                  dist: xenial
+        allow_failures:
+                - python: 'nightly'
+                  PARALLELIZE=true
+                  dist: xenial
 script:
-  - pytest
+        pytest 
+before_script:
+        export PYTHONPATH=$PYTHONPATH:$(pwd)
