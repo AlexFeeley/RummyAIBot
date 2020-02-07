@@ -27,8 +27,8 @@ class TestDeck(unittest.TestCase):
 
     def test_insert_max_size(self):
         deck = Deck(True)
-        self.assertRaises(Exception, deck.insert(self.card), "Did not raise exception when trying \
-                to overfill deck")
+        with self.assertRaises(Exception):
+            deck.insert(self.card)
 
     def test_delete(self):
         deck = Deck(True)
@@ -37,14 +37,14 @@ class TestDeck(unittest.TestCase):
 
     def test_delete_zero_cards(self):
         deck = Deck()
-        self.assertRaises(Exception, deck.delete(self.card), "Delete method did not raise \
-                exeception if no cards in deck")
+        with self.assertRaises(Exception):
+            deck.delete(self.card)
 
     def test_delete_card_does_not_exist(self):
         deck = Deck(True)
         deck.delete(self.card)
-        self.assertRaises(Exception, deck.delete(self.card), "Delete method did not raise \
-                exception if card deleted is not in deck")
+        with self.assertRaises(Exception):
+            deck.delete(self.card)
 
     def test_draw_card(self):
         deck = Deck(True)
