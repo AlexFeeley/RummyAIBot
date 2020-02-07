@@ -1,0 +1,22 @@
+dist: xenial
+language: python
+
+jobs:
+  include:
+      python: 3.8
+      before_script:
+      - export PYTHONPATH=$PYTHONPATH:$(pwd)
+      script:
+      - pytest
+
+      python: 3.6
+      before_script:
+      - export PYTHONPATH=$PYTHONPATH:$(pwd)
+      script:
+      - pytest
+      
+      python: 'nightly'
+      before_script:
+      - export PYTHONPATH=$PYTHONPATH:$(pwd)
+      script:
+      - pytest

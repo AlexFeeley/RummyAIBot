@@ -34,8 +34,11 @@ class Deck:
 
     # Inserts a card into the deck
     def insert(self, card):
-        self.cards.append(card)
-        self.number_cards += 1
+        if self.number_cards < 52:
+            self.cards.append(card)
+            self.number_cards += 1
+        else:
+            raise Exception('Cannot insert a card into a full deck')
 
     # Deletes a card from the deck
     def delete(self, card):
@@ -43,7 +46,7 @@ class Deck:
             self.cards.remove(card)
             self.number_cards -= 1
         else:
-            print("Card to be deleted was not found in deck")
+            raise Exception('Cannot delete a card from an empty deck')
 
     # Deck shuffle command??
 
@@ -55,7 +58,7 @@ class Deck:
             self.number_cards -= 1
             return card
         else:
-            print("Cannot draw a card from an empty deck")
+            raise Exception('Cannot draw a card from an empty deck')
 
     # Returns the array containing the deck
     def return_deck(self):
