@@ -1,18 +1,18 @@
 language: python
 
 jobs:
-        include:
-                - python: 3.6
-                  PARALLELIZE=true
-                  dist: xenial
-                - python: 3.8
-                  PARALLELIZE=true
-                  dist: xenial
-        allow_failures:
-                - python: 'nightly'
-                  PARALLELIZE=true
-                  dist: xenial
+    include:
+        - python: 3.6
+          PARALLELIZE=true
+          dist: xenial
+        - python: 3.8
+          PARALLELIZE=true
+          dist: xenial
+    allow_failures:
+        - python: 'nightly'
+          PARALLELIZE=true
+          dist: xenial
 script:
-        pytest 
+    pytest 
 before_script:
-        export PYTHONPATH=$PYTHONPATH:$(pwd)
+    export PYTHONPATH=$PYTHONPATH:$(pwd)
