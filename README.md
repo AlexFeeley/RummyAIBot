@@ -1,14 +1,12 @@
 This project creates an AI that plays the common game of gin rummy.
 
-We are going to develop a few classes that can be implemented over the next couple weeks. Light
-commenting will be provided. 
 
-PATHS:
-Alex, to use the tests properly, just type in pytest and it will
-run all of our tests and show you the failures. However, for any of the tests to work. You need to
-add this package to your path. The way I did it was 
-export PYTHONPATH=$PYTHONPATH:/path/you/want/to/add
-in the terminal. My actual command looked like
-export PYTHONPATH=$PYTHONPATH: /luke/home/PycharmProjects/rummyaibot/
-You will have to do something similar although I do not know the exact paths for linux. 
-Also, for future notes, pytest only works because we havejQ
+Travis-ci:
+Right now travis is configured to allow nightly failrues and wokr on 3.6 and 3.8. The path is
+currently poorly set, but will work for what we need it to do.
+
+Paths:
+Add this to you ~/.bashrc at the bottom. Everytime you open a terminal it will add the correct
+directory to your python path. 
+
+export PYTHONPATH="${PYTHONPATH}:/my/other/path"
