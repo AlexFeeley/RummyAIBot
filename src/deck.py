@@ -1,10 +1,7 @@
-# Currently added compile lines so that my test file would run
-# Obviously when you implemnent these, it will delete them
-
 from src.card import *
 
 class Deck:
-    # builds inital deck of cards thats empty if no second param is passed. Otherwise construct full
+    # Builds inital deck of cards that's empty if no parameter is passed. Otherwise constructs full
     # deck.
     def __init__(self, initialize = None, number_cards = 0):
         if initialize is None:
@@ -52,14 +49,17 @@ class Deck:
 
     # Draws a card from the deck
     def draw_card(self):
-        card = self.cards[0]
-        self.cards.remove(card)
-        self.number_cards -= 1
-        return card
+        if self.number_cards != 0:
+            card = self.cards[self.number_cards - 1]    # Draws from top of deck
+            self.cards.remove(card)
+            self.number_cards -= 1
+            return card
+        else:
+            print("Cannot draw a card from an empty deck")
 
     # Returns the array containing the deck
     def return_deck(self):
-        print("compile line")
+        return self.cards
 
     # Returns an array with all cards passed a certain card. Mimics picking up at a number?
     def pickup_cards(self, card):
