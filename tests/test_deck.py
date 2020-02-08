@@ -1,7 +1,6 @@
 import unittest
 
 # Import from src path
-from src.card import *
 from src.deck import *
 
 
