@@ -1,5 +1,5 @@
 from src.deck import *
-from src.card import Card.get_suit
+from src.card import *
 
 class Hand:
 
@@ -7,12 +7,15 @@ class Hand:
     def __init__(self, deck = None):
         self.hand = Deck()
         if deck is not None:
-            _startcards_(deck)
+            self._startcards_(deck)
 
     # Helper method, draws 7 cards from the deck
     def _startcards_(self, deck):
-        for i in range(6):
-            self.hand.insert(deck.draw_card())
+        if len(deck) > 6:
+            for i in range(7):
+                self.hand.insert(deck.draw_card())
+        else:
+            raise Exception("Cannot draw a hand from a deck with less than 7 cards")
 
     # Returns the number of cards in a hand
     def __len__(self):
@@ -20,7 +23,7 @@ class Hand:
 
     # Prints cards in hand
     def __str__(self):
-        print(self.hand)
+        return self.hand.__str__()
 
     # Draws one card from the deck
     def draw_card(self, deck):
@@ -34,7 +37,7 @@ class Hand:
         else:
             raise ValueError("Card not in hand")
 
-    # lays down cards if possible
+    # Lays down cards if possible
     def lay_down(self, deck, cards):
         if _verify_set(cards):
             for card in cards:
@@ -43,7 +46,6 @@ class Hand:
             for card in cards:
                 deck.insert(card)
                 self.hand.delete(card)
-
 
     # Checks if cards are in hand
     def __contains__(self, card):
@@ -57,34 +59,32 @@ class Hand:
             if card.get_suit() != suit:
                 if card.get_number != number:
                     return False
-                elif _same_number(cards):
-                    return True
-
-             else _consecutive(cards):
-                 return True
-
+                # elif _same_number(cards):
+                #     return True
+                # else _consecutive(cards):
+                #     return True
         return False
 
+    # # Helper method to identify if three numbers are consectuive. Additionally checks they do not
+    # # loop
+    # def _consectutive(self, cards):
+    #     integers = []
+    #     for card in cards:
+    #         integers.append(card.get_number())
+    #     if sorted(integers) == list(range(min(integers), max(integers)+1)):
+    #         return True
+    #     else:
+    #         1 if x==13 else x for x in integers
+    #         return sorted(integers) == list(range(min(integers), max(integers)_1))
+    #
+    # # helper method to check if all cards have the same number
+    # def _same_number(cards):
+    #     number = cards[1].get_number()
+    #     for card in cards:
+    #         if card.number() != number:
+    #             return False
+    #     return True
 
-    # helper method to identify if three numbers are consectuive. Additionally checks they do not
-    # loop
-    def _consectutive(self, cards):
-        integers = []
-        for card in cards:
-            integers.append(card.get_number())
-        if sorted(integers) == list(range(min(integers), max(integers)+1)):
-            return True
-        else:
-            1 if x==13 else x for x in integers 
-            return sorted(integers) == list(range(min(integers), max(integers)_1))
+    # Insert specific card into hand
 
-    # helper method to check if all cards have the same number
-    def _same_number(cards):
-        number = cards[1].get_number()
-        for card in cards:
-            if card.number() != number:
-                return False
-        return True
-
-
-
+    # Insert array of cards into hand
