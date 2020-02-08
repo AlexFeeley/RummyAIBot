@@ -6,14 +6,14 @@ class Deck:
     def __init__(self, initialize = None, number_cards = 0):
         if initialize is None:
             # Initialize an empty deck with 0 cards
-            self.cards = []
+            self.deck = []
             self.number_cards = 0
         else:
             # Initialize a full deck with 52 cards
-            self.cards = []
+            self.deck = []
             for s in ["Hearts", "Diamonds", "Spades", "Clubs"]:
                 for v in range(2, 15):
-                    self.cards.append(Card(s, v))
+                    self.deck.append(Card(s, v))
             self.number_cards = 52
 
     # Returns the number of cards in the deck
@@ -22,39 +22,36 @@ class Deck:
 
     # Prints the deck in a clean way
     def __str__(self):
-        for c in self.cards:
+        for c in self.deck:
             c.__str__()
 
     # Checks if the deck contains a card
     def __contains__(self, card):
-        for c in self.cards:
-            if c == card:
-                return True
+        if card in self.deck:
+            return True
         return False
 
     # Inserts a card into the deck
     def insert(self, card):
         if self.number_cards < 52:
-            self.cards.append(card)
+            self.deck.append(card)
             self.number_cards += 1
         else:
             raise Exception('Cannot insert a card into a full deck')
 
     # Deletes a card from the deck
     def delete(self, card):
-        if self.__contains__(card):
-            self.cards.remove(card)
+        if self.number_cards > 0 and self.deck.__contains__(card):
+            self.deck.remove(card)
             self.number_cards -= 1
         else:
             raise Exception('Cannot delete a card from an empty deck')
 
-    # Deck shuffle command??
-
     # Draws a card from the deck
     def draw_card(self):
-        if self.number_cards != 0:
-            card = self.cards[self.number_cards - 1]    # Draws from top of deck
-            self.cards.remove(card)
+        if self.number_cards > 0:
+            card = self.deck[self.number_cards - 1]    # Draws from top of deck
+            self.deck.remove(card)
             self.number_cards -= 1
             return card
         else:
@@ -62,11 +59,14 @@ class Deck:
 
     # Returns the array containing the deck
     def return_deck(self):
-        return self.cards
+        return self.deck
 
     # Returns an array with all cards passed a certain card. Mimics picking up at a number?
     def pickup_cards(self, card):
-        print("compile line")
+        temp = self.deck.index(card)
+        self.number_cards = temp
+        self.deck = self.deck[0:temp]
+        return self.deck[temp:len(self.deck)]
 
     # Returns true if a deck is empty
     def is_empty(self):

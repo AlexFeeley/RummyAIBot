@@ -33,7 +33,7 @@ class TestDeck(unittest.TestCase):
     def test_delete(self):
         deck = Deck(True)
         deck.delete(self.card)
-        self.assertEqual(len(deck), 53, "Delete method did not update length size")
+        self.assertEqual(len(deck), 51, "Delete method did not update length size")
 
     def test_delete_zero_cards(self):
         deck = Deck()
@@ -48,30 +48,27 @@ class TestDeck(unittest.TestCase):
 
     def test_draw_card(self):
         deck = Deck(True)
-        self.assertIsInstance(type(self.card), deck.draw_card(), "Draw Card did not return a card type")
+        card = deck.draw_card()
+        self.assertFalse(deck.__contains__(card), "Deck still contains card that was drawn")
 
     def test_draw_card_size(self):
         deck = Deck(True)
         deck.draw_card()
-        self.assertEqual(len(deck), 53, "Deck size not updated on draw_card")
+        self.assertEqual(len(deck), 51, "Deck size not updated on draw_card")
 
     def test_return_deck(self):
         deck = Deck(True)
-        a = []
-        a.append(self.card)
-        self.assertIsInstance(type(a), deck.return_deck())
+        self.assertIsInstance(deck.return_deck(), list)
 
     def test_pickup_cards(self):
         deck = Deck(True)
-        deck.pickup_cards(card)
-        self.assertNotEqual(52, len(deck), "Deck size did not shrink when pickup cards was called")
+        deck.pickup_cards(self.card)
+        self.assertEqual(37, len(deck), "Deck size did not shrink when pickup cards was called")
+        self.assertFalse(deck.__contains__(self.card), "Deck still contains card that was picked up from")
 
     def test_pickup_cards_type(self):
-        a = []
-        a.append(self.card)
         deck = Deck(True)
-        self.assertIsInstance(type(a), deck.pickup_cards(self.card), "Pickup cards did not return \
-                a list")
+        self.assertIsInstance(deck.pickup_cards(self.card), list)
 
     def test_is_empty(self):
         deck = Deck(True)
