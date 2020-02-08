@@ -14,6 +14,7 @@ class Card:
             self.number = number
 
     def get_card(self):
+        # Why do we use a named tuple here?
         return collections.namedtuple('Card', [self.suit, self.number])
 
     def get_suit(self):
@@ -21,6 +22,12 @@ class Card:
 
     def get_number(self):
         return self.number
+
+    # Checks if two cards are equal
+    def __eq__(self, other):
+        if self.suit == other.suit and self.number == other.number:
+            return True
+        return False
 
     def __str__(self):
         if self.number == 11:
