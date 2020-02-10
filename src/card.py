@@ -13,21 +13,21 @@ class Card:
             self.suit = suit
             self.number = number
 
-    def get_card(self):
-        # Why do we use a named tuple here?
-        return collections.namedtuple('Card', [self.suit, self.number])
-
+    # Accessor method for suit
     def get_suit(self):
         return self.suit
 
+    # Accessor method for number of card (11-14 are face cards)
     def get_number(self):
         return self.number
 
     # Checks if two cards are equal
     def __eq__(self, other):
-        if self.suit == other.suit and self.number == other.number:
-            return True
-        return False
+        return self.suit == other.suit and self.number == other.number
+
+    # Returns instance of one card: Card(suit, number)
+    def get_card(self):
+        return collections.namedtuple('Card', [self.suit, self.number])
 
     def __str__(self):
         if self.number == 11:
