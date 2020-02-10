@@ -53,7 +53,7 @@ class Hand:
             return True
         else:
             return False
-        
+
     def consecutive(self, cards):
         integers = []
         for card in cards:
@@ -65,7 +65,7 @@ class Hand:
                 if x == 13:
                     x = 1
             return sorted(integers) == list(range(min(integers), max(integers)+1))
-    
+
     # helper method to check if all cards have the same number
     def same_number(self, cards):
         number = cards[1].get_number()
@@ -80,7 +80,6 @@ class Hand:
             if card.get_suit() != suit:
                 return False
         return True
-
 
     # Lays down more than one card to pile if possible
     def lay_down(self, deck, cards):

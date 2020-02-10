@@ -28,23 +28,26 @@ class TestDeck(unittest.TestCase):
         self.assertEqual(len(self.hand), 8, "Draw card increased the size of the hand by one")
 
     def test_putDown(self):
-        self.hand = Hand(Deck(True))
-        self.hand.put_down(Deck(), Card("Clubs", 9))
-        self.assertFalse(self.hand.__contains__(Card("Clubs", 9)))
+        self.hand = Hand()
+        self.hand.insert_card(Deck(True), Card("Hearts", 3))
+        self.hand.put_down(Deck(), Card("Hearts", 3))
+        self.assertFalse(self.hand.__contains__(Card("Hearts", 3)))
 
     def test_putDown_length(self):
-        self.hand = Hand(Deck(True))
-        self.hand.put_down(Deck(), Card("Clubs", 9))
-        self.assertEqual(len(self.hand), 6, "Laying down one card decreased the size of the hand by one")
+        self.hand = Hand()
+        self.hand.insert_card(Deck(True), Card("Hearts", 3))
+        self.hand.put_down(Deck(), Card("Hearts", 3))
+        self.assertEqual(len(self.hand), 0, "Laying down one card decreased the size of the hand by one")
 
     def test_putDown_exception(self):
-        self.hand = Hand(Deck(True))
+        self.hand = Hand()
         with self.assertRaises(ValueError):
             self.hand.put_down(Deck(), Card("Hearts", 9))
 
     def test_layDown(self):
+        self.hand = Hand()
         cards = [Card("Clubs", 9), Card("Clubs", 8)]
-        self.hand = Hand(Deck(True))
+        self.hand.insert_cards(Deck(True), cards)
         self.hand.lay_down(Deck(), cards)
         self.assertFalse(self.hand.__contains__(Card("Clubs", 9)))
 
