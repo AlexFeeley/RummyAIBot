@@ -7,6 +7,7 @@ class Hand:
     def __init__(self, deck = None):
         self.hand = Deck()
         if deck is not None:
+            deck.shuffle_deck()
             self.__startcards_(deck)
 
     # Helper method, draws 7 cards from the deck
