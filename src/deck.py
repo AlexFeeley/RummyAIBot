@@ -1,4 +1,5 @@
 from src.card import *
+import random
 
 class Deck:
     # Builds inital deck of cards that's empty if no parameter is passed. Otherwise constructs full
@@ -30,9 +31,7 @@ class Deck:
 
     # Checks if the deck contains a card
     def __contains__(self, card):
-        if card in self.deck:
-            return True
-        return False
+        return card in self.deck
 
     # Inserts a card into the deck
     def insert(self, card):
@@ -64,7 +63,7 @@ class Deck:
     def return_deck(self):
         return self.deck
 
-    # Returns an array with all cards passed a certain card. Mimics picking up at a number?
+    # Returns an array with all cards past a certain card, mimicing picking up from a certain card
     def pickup_cards(self, card):
         temp = self.deck.index(card)
         self.number_cards = temp
@@ -77,3 +76,7 @@ class Deck:
             return True
         else:
             return False
+
+    # Shuffle deck
+    def shuffle_deck(self):
+        return random.shuffle(self.deck)
