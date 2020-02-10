@@ -31,12 +31,12 @@ class Card:
 
     def __str__(self):
         if self.number == 11:
-            print("Jack of ", self.suit)
+            return("Jack of {}".format(self.suit))
         elif self.number == 12:
-            print("Queen of ", self.suit)
+            return("Queen of {}".format(self.suit))
         elif self.number == 13:
-            print("King of ", self.suit)
+            return("King of {}".format(self.suit))
         elif self.number == 14:
-            print("Ace of ", self.suit)
+            return("Ace of {}".format(self.suit))
         else:
-            print(self.number, " of ", self.suit)
+            return("{0} of {1}".format(self.number, self.suit))

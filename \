@@ -24,8 +24,8 @@ class Deck:
     def __str__(self):
         s = ""
         for c in self.deck:
-            s += "{}\n".format(str(c))
-        return s[:-2]
+            s += "\n{}".format(str(c))
+        return s
             
 
     # Checks if the deck contains a card
