@@ -22,8 +22,11 @@ class Deck:
 
     # Prints the deck in a clean way
     def __str__(self):
+        s = ""
         for c in self.deck:
-            c.__str__()
+            s += "{}\n".format(str(c))
+        return s[:-2]
+            
 
     # Checks if the deck contains a card
     def __contains__(self, card):

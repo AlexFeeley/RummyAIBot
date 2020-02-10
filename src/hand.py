@@ -23,7 +23,7 @@ class Hand:
 
     # Prints cards in hand
     def __str__(self):
-        return self.hand.__str__()
+        return str(self.hand)
 
     # Draws one card from the deck
     def draw_card(self, deck):
