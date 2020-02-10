@@ -1,13 +1,15 @@
 from src.hand import *
 
-card = Card("Spades", 9)
+card = Card("Clubs", 9)
+card2 = Card("Spades", 9)
+card3 = Card("Hearts", 9)
+cards = [card, card2, card3]
+deck = Deck(True)
+hand = Hand(deck)
+for i in range(0, 45):
+    hand.draw_card(deck)
 
-# Why does this print none after listing the card?
-print(card)
-# Why is there one none after printing all the cards despite it using the card classes' string?
-#deck = Deck(True)
-#print(deck)
-
-hand = Hand(Deck(True))
+empty_deck = Deck()
+hand.lay_down(empty_deck, cards)
 print(hand)
 
