@@ -77,6 +77,9 @@ class Deck:
         else:
             return False
 
+    # returns the number of cards in front of a card
+    def num_cards(self):
+        
     # Shuffle deck
     def shuffle_deck(self):
         return random.shuffle(self.deck)
