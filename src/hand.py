@@ -7,6 +7,7 @@ class Hand:
     def __init__(self, deck = None):
         self.hand = Deck()
         if deck is not None:
+            deck.shuffle_deck()
             self.__startcards_(deck)
 
     # Helper method, draws 7 cards from the deck
@@ -25,11 +26,11 @@ class Hand:
     def __str__(self):
         return str(self.hand)
 
-    # Draws one card from the deck
+    # Draws one card from the deck, adding one card to your hand
     def draw_card(self, deck):
         self.hand.insert(deck.draw_card())
 
-    # Puts down one card to deck
+    # Puts down one card to pile
     def put_down(self, deck, card):
         if card in self:
             self.hand.delete(card)
@@ -52,7 +53,7 @@ class Hand:
             return True
         else:
             return False
-        
+
     def consecutive(self, cards):
         integers = []
         for card in cards:
@@ -64,7 +65,7 @@ class Hand:
                 if x == 13:
                     x = 1
             return sorted(integers) == list(range(min(integers), max(integers)+1))
-    
+
     # helper method to check if all cards have the same number
     def same_number(self, cards):
         number = cards[1].get_number()
@@ -80,17 +81,32 @@ class Hand:
                 return False
         return True
 
-
-    # Lays down cards if possible
+    # Lays down more than one card to pile if possible
     def lay_down(self, deck, cards):
         if self.verify_set(cards):
             for card in cards:
                 if card not in self:
                     raise ValueError("Cards are not in hand")
-            for card in cards:
                 deck.insert(card)
                 self.hand.delete(card)
+        else:
+            raise Exception("You cannot lay down cards that are not a set")
 
-    # Insert specific card into hand
+    # Inserts one specific card into hand
+    def insert_card(self, deck, card):
+        if card in deck:
+            self.hand.insert(card)
+        else:
+            raise Exception("Cannot insert card into hand that is not in pile")
 
-    # Insert array of cards into hand
+    # Inserts more than one card into hand
+    def insert_cards(self, deck, cards):
+        allin = True
+        for card in cards:
+            if card not in deck:
+                allin = False
+        if allin:
+            for card in cards:
+                self.hand.insert(card)
+        else:
+            raise Exception("Cannot insert cards into hand that are not in pile")
