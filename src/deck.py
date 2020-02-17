@@ -77,3 +77,7 @@ class Deck:
             return True
         else:
             return False
+
+    # returns the number of cards in front of a card
+    def num_cards(self):
+        
