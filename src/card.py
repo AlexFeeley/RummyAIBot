@@ -40,3 +40,19 @@ class Card:
             return("Ace of {}".format(self.suit))
         else:
             return("{0} of {1}".format(self.number, self.suit))
+
+    # returns the number of points a card is worth. Return an ace as 15 but we need to solve the 1
+    # later
+    def return_points(self):
+        if self.number == 11:
+            return 10
+        elif self.number == 12:
+            return 10
+        elif self.number == 13:
+            return 10
+        elif self.number == 14:
+            return 15
+        else:
+            return self.number
+        
+        
