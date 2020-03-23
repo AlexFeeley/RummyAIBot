@@ -22,10 +22,6 @@ class Game:
         for i in range(0, number_players):
             hands.append(Hand(game_deck))
 
-    # Calculates and adds score for each player
-    def add_score(self, player):
-        print("I compile")
-
     # returns a tuple of player scores
     # from greatest to least
     def get_score(self):
@@ -46,11 +42,12 @@ class Game:
         print("I compile")
 
     # If MAX_POINTS is not reached and 'round' not over, start a new round
-    def play_round(self):
+    # Probably a helper method eventually once we have the game just loop until it's done
+    def start_round(self):
         print("I compile")
 
     # Prints all cards that have been put down by each player
-    def show_laydown(self):
+    def __str__(self):
         print("I compile")
 
     # Shows discard pile
