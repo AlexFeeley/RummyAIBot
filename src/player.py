@@ -3,7 +3,7 @@ from src.game import Game
 
 # inherits from game class
 # this is because we need the players to access methods such as the score
-class Player:
+class Player(Game):
     # initialize hand with games deck
     def __init__(self):
         print("I compile")
