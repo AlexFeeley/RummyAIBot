@@ -1,9 +1,5 @@
-from src.game import Game
-
-
-# inherits from game class
 # this is because we need the players to access methods such as the score
-class Player(Game):
+class Player():
     # initialize hand with games deck
     # should we make local variables from the constructor s.t each player
     # has access to game deck, discard deck, and max points
