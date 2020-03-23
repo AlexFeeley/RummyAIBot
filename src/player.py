@@ -1,6 +1,6 @@
 # inherits from game class
 # this is because we need the players to access methods such as the score
-class Player(Game):
+class Player:
     # initialize hand with games deck
     def __init__(self, game):
         print("I compile")
