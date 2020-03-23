@@ -1,8 +1,11 @@
+from src.game import Game
+
+
 # inherits from game class
 # this is because we need the players to access methods such as the score
 class Player:
     # initialize hand with games deck
-    def __init__(self, game):
+    def __init__(self):
         print("I compile")
 
     # lay down, should just call players hand easily
@@ -27,7 +30,7 @@ class Player:
         print("I compile")
 
     # prints hand
-    def __str__(self):
+    def show_hand(self):
         print("I compile")
 
     # shows sets all players have laid down

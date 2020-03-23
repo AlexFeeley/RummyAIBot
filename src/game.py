@@ -2,9 +2,11 @@ from src.hand import *
 
 class Game:
     # init game with deck, discard deck, and player count
-    def __init__(self, player_count):
+    def __init__(self, player_count, game_points):
         game_deck = Deck(True)
         discard_deck = Deck()
+        number_players = player_count
+        max_points = game_points
 
         hands = []
 
@@ -12,8 +14,13 @@ class Game:
             hands.append(Hand(game_deck))
 
     # resets the deck
-    def reset(self):
-        print("I compile")
+    def reset(self, number_players, hands):
+        game_deck = Deck(True)
+        discard_deck = Deck()
+
+        hands = []
+        for i in range(0, number_players):
+            hands.append(Hand(game_deck))
 
     # Calculates and adds score for each player
     def add_score(self, player):
@@ -43,9 +50,9 @@ class Game:
         print("I compile")
 
     # Prints all cards that have been put down by each player
-    def laydown(self):
+    def show_laydown(self):
         print("I compile")
 
     # Shows discard pile
-    def discard(self):
+    def show_discard(self):
         print("I compile")
