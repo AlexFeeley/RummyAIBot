@@ -87,11 +87,11 @@ class Hand:
         return self.points
 
     # Returns number of points in hand
+    # How do you do this :(
     def points_hand(self, cards):
         points = 0
         for i in range(len(cards)):
-            card = self.hand[cards[i]]
-            print(card)
+            card = self.hand.__contains__(cards[i])
             points += card.return_points()
         return points
 
