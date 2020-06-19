@@ -1,11 +1,12 @@
 from src.deck import *
-from src.card import *
+
 
 class Hand:
 
     # Constructor shuffles deck and draws original 7 cards for each player
     def __init__(self, deck = None):
         self.hand = Deck()
+        self.points = 0  # Records number of points laid down
         if deck is not None:
             deck.shuffle_deck()
             self.__startcards_(deck)
@@ -32,12 +33,11 @@ class Hand:
 
     # Puts down one card to pile
     def put_down(self, deck, card):
-        if card in self:
+        if card in self.hand:
             self.hand.delete(card)
             deck.insert(card)
         else:
             raise ValueError("Card not in hand")
-
 
     # Checks if cards are in hand
     def __contains__(self, card):
@@ -54,32 +54,21 @@ class Hand:
         else:
             return False
 
+    # Helper method if three cards are of consecutive numbers
+    # Doesn't allow for use of ace as a low card
     def consecutive(self, cards):
         integers = []
         for card in cards:
             integers.append(card.get_number())
-        if sorted(integers) == list(range(min(integers), max(integers)+1)):
-            return True
-        else:
-            for x in integers:
-                if x == 13:
-                    x = 1
-            return sorted(integers) == list(range(min(integers), max(integers)+1))
+        return sorted(integers) == list(range(min(integers), max(integers)+1))
 
-    # helper method to check if all cards have the same number
+    # Helper method to check if all cards have the same number
     def same_number(self, cards):
-        number = cards[1].get_number()
-        for card in cards:
-            if card.get_number() != number:
-                return False
-        return True
+        return all(card == cards[0] for card in cards)
 
+    # Helper method to check if all cards are of the same suit
     def same_suit(self, cards):
-        suit = cards[1].get_suit()
-        for card in cards:
-            if card.get_suit() != suit:
-                return False
-        return True
+        return all(card.get_suit() == cards[0].get_suit() for card in cards)
 
     # Lays down more than one card to pile if possible
     def lay_down(self, deck, cards):
@@ -89,8 +78,22 @@ class Hand:
                     raise ValueError("Cards are not in hand")
                 deck.insert(card)
                 self.hand.delete(card)
+                self.points += card.return_points()
         else:
             raise Exception("You cannot lay down cards that are not a set")
+
+    # Returns number of points that have been laid down
+    def points_down(self):
+        return self.points
+
+    # Returns number of points in hand
+    def points_hand(self, cards):
+        points = 0
+        for i in range(len(cards)):
+            card = self.hand[cards[i]]
+            print(card)
+            points += card.return_points()
+        return points
 
     # Inserts one specific card into hand
     def insert_card(self, deck, card):

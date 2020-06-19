@@ -4,7 +4,7 @@ import random
 class Deck:
     # Builds inital deck of cards that's empty if no parameter is passed. Otherwise constructs full
     # deck.
-    def __init__(self, initialize = None, number_cards = 0):
+    def __init__(self, initialize=None):
         if initialize is None:
             # Initialize an empty deck with 0 cards
             self.deck = []
@@ -27,7 +27,6 @@ class Deck:
         for c in self.deck:
             s += "{}\n".format(str(c))
         return s[:-2]
-            
 
     # Checks if the deck contains a card
     def __contains__(self, card):
@@ -65,20 +64,17 @@ class Deck:
 
     # Returns an array with all cards past a certain card, mimicing picking up from a certain card
     def pickup_cards(self, card):
-        temp = self.deck.index(card)
-        self.number_cards = temp
-        self.deck = self.deck[0:temp]
-        return self.deck[temp:len(self.deck)]
+        if self.number_cards > 0 and self.deck.__contains__(card):
+            temp = self.deck.index(card)
+            self.number_cards = temp
+            self.deck = self.deck[0:self.number_cards]
+            return self.deck[temp:len(self.deck)]
+        else:
+            raise Exception('Cannot pick up from a card that\'s not in the pile')
 
     # Returns true if a deck is empty
     def is_empty(self):
-        if self.number_cards == 0:
-            return True
-        else:
-            return False
-
-    # returns the number of cards in front of a card
-    def num_cards(self):
+        return self.number_cards == 0
         
     # Shuffle deck
     def shuffle_deck(self):
